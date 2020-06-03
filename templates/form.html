@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Form{% endblock %}
+{% block body %}
+
+{% if result %}
+
+    <p>Thank you!</p>
+
+{% else %}
+
+    <p>The format is 'job' followed by a space then a number representing the number of years there. The records are separated by commas.</p>
+    <ul>
+        <li>student, undergrad, postgrad, postdoc, lecturer, professor, reader, academic</li>
+        <li>megaservice, service, microservice,</li>
+        <li>consultant, sales,</li>
+        <li>software, technology,</li>
+        <li>noc, ioc, independent, exploration, e&p,</li>
+        <li>mining, other</li>
+        <li>government, survey, agency, localgov,</li>
+        <li>unemployed, retired,</li>
+        <li>self-employed, startup,</li>
+    </ul>
+
+    <p>Example: <code>undergrad 3, postgrad 4, noc 3, software 4, ioc 5, microservice 10</code></p>
+
+    <form action="/" method="post">
+        <input type="text" name="data" placeholder="Add your path" required="required" size="64" />
+        <button type="submit">Submit</button>
+    </form>
+
+{% endif %}
+
+{% endblock %}

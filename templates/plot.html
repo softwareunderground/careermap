@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Form{% endblock %}
+{% block body %}
+
+
+{% if result %}
+
+    <img src="data:image/png;base64,{{ result['plot'] }}" />
+
+{% else %}
+
+    <p>No network data.</p>
+
+{% endif %}
+
+{% endblock %}
