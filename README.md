@@ -1,6 +1,6 @@
 # careermap
 
-A small app to map career paths
+**A small app to map career paths**
 
 The notebook is very hacky, but it might be easier to develop new things there
 instead of in the app.
@@ -18,3 +18,7 @@ Or just do this from this directory:
 
     pip install -r requirements.txt
 
+## Demo
+
+There's a deployed version of this app running at
+[**careermap.softwareunderground.org**](https://careermap.softwareunderground.org/).
