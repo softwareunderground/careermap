@@ -1,8 +1,5 @@
-from io import BytesIO
-import base64
-
-from flask import Flask, request, render_template, jsonify
-from PIL import Image
+# -*- coding: utf-8 -*-
+from flask import Flask, request, render_template
 
 import utils
 
