@@ -7,11 +7,11 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 
 
-VOCAB = ["student", "undergrad", "postgrad", "postdoc", "lecturer", "professor", "reader", "academic",
+VOCAB = ["student", "faculty", "academic",
          "megaservice", "service", "microservice",
-         "consultant", "sales",
+         "consulting", "sales",
          "software", "technology",
-         "noc", "ioc", "independent", "exploration", "e&p",
+         "natoc", "intoc", "indoc", "junoc",
          "government", "agency", "survey", "localgov",
          "mining",
          "unemployed", "retired",
