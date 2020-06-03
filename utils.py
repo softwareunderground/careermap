@@ -31,7 +31,7 @@ def get_path(record):
 
 def store_path(path):
     with shelve.open('edges') as db:
-        for pair in [*zip(path[:-1], path[1:])]:
+        for pair in zip(path[:-1], path[1:]):
             count = db.get(','.join(pair), 0)
             db[','.join(pair)] = count + 1
     return 'Done'
