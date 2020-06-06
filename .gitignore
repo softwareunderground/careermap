@@ -1,4 +1,5 @@
 # Don't include the app's data.
+nodes.*
 edges.*
 log.txt
 

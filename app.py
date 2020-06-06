@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+import os
+
 from flask import Flask, request, render_template
 
 import utils
@@ -14,9 +15,7 @@ def index():
     """
     if request.method == 'POST':
         data = request.form.get('data')
-        _ = utils.store_entry(data)  # Persist.
-        path = utils.get_path(data)
-        result = utils.store_path(path)
+        result = utils.store(data)
     else:
         result = ''
 
@@ -28,8 +27,26 @@ def plot():
     """
     Serve a plot of the network.
     """
-    G = utils.get_network()
-    result = {'plot': utils.plot(G)}
+    scale = int(request.args.get('scale') or '10')
+
+    log = request.args.get('log') or 'false'
+    if log.lower() in ['0', 'false', 'off', 'no']:
+        log = False
+    else:
+        log = True
+
+    drop = request.args.get('drop') or 'false'
+    if drop.lower() in ['0', 'false', 'off', 'no']:
+        drop = False
+    else:
+        drop = True
+
+    years = utils.get_years()
+    G = utils.get_network(years)
+    if len(G) < 1:
+        return render_template('plot.html', result={})
+    result = {'network_plot': utils.plot_network(G, years, scale=scale)}
+    result['years_plot'] = utils.plot_years(years, drop=drop, log=log)
     return render_template('plot.html', result=result)
 
 
@@ -39,3 +56,15 @@ def about():
     Serve the page.
     """
     return render_template('about.html')
+
+
+@app.route('/delete', methods=['DELETE'])
+def delete():
+    """
+    Delete the database.
+    """
+    if request.method == 'DELETE':
+        # _ = os.remove("log.txt")
+        _ = os.remove("edges.db")
+        _ = os.remove("nodes.db")
+        return "Done"
