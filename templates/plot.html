@@ -5,7 +5,10 @@
 
 {% if result %}
 
-    <img src="data:image/png;base64,{{ result['plot'] }}" />
+    <img src="data:image/png;base64,{{ result['lasts_plot'] }}" />
+    <img src="data:image/png;base64,{{ result['lens_plot'] }}" />
+    <img src="data:image/png;base64,{{ result['years_plot'] }}" />
+    <img src="data:image/png;base64,{{ result['network_plot'] }}" />
 
 {% else %}
 
