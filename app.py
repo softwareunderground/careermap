@@ -47,13 +47,20 @@ def plot():
         return render_template('plot.html', result={})
     result = {'network_plot': utils.plot_network(G, years, scale=scale)}
 
-    result['years_plot'] = utils.plot_bars(years, sort=True, drop=drop, log=log)
+    result['years_plot'] = utils.plot_bars(years,
+                                           sort=True,
+                                           drop=drop,
+                                           log=log
+                                           )
 
     lasts = utils.get_lasts()
     result['lasts_plot'] = utils.plot_bars(lasts, title="Current position")
 
     lens = utils.get_lens()
-    result['lens_plot'] = utils.plot_bars(lens, title="Career length so far", lpos=0.5)
+    result['lens_plot'] = utils.plot_bars(lens,
+                                          title="Career length so far",
+                                          lpos=0.5
+                                          )
 
     return render_template('plot.html', result=result)
 

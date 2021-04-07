@@ -5,7 +5,6 @@ import networkx as nx
 import base64
 from io import BytesIO
 import matplotlib.pyplot as plt
-import numpy as np
 from collections import OrderedDict
 from collections import defaultdict
 
@@ -18,8 +17,8 @@ VOCAB = ["undergrad", "postgrad", "faculty", "academic",
          "mining",
          "unemployed", "retired",
          "startup", "self-employed",
-         "other", 'break'
-        ]
+         "other", 'break',
+         ]
 
 
 def get_info(record):
@@ -118,13 +117,14 @@ def get_lens():
     bins = list(chunks([str(n) for n in range(50)], 5))
     labels = ['<5', '5-9', '10-14', '15-19', '20-24', '25-29',
               '30-34', '35-39', '40-44', '45-49', '>50']
-    data = [0 for l in labels]
+    data = [0 for L in labels]
     for k, v in d.items():
         for idx, row in enumerate(bins):
-            if k in row: break
+            if k in row:
+                break
         data[idx] += v
 
-    return OrderedDict((l, d) for l, d in zip(labels, data))
+    return OrderedDict((L, d) for L, d in zip(labels, data))
 
 
 def plot_network(G, years, scale=10):
@@ -132,7 +132,7 @@ def plot_network(G, years, scale=10):
     Make a networkx plot and convert to base64-encoded string.
     """
     edges = G.edges()
-    weights = [G[u][v]['weight'] for u,v in edges]
+    weights = [G[u][v]['weight'] for u, v in edges]
 
     counts = [scale * nx.get_node_attributes(G, 'count')[u] for u in G.nodes()]
 
@@ -159,8 +159,9 @@ def plot_network(G, years, scale=10):
 
 
 def plot_bars(data, drop=False, sort=False, log=False, title=True, lpos=None):
-
-
+    """
+    Generic bar plotting function. Does all the plots.
+    """
     if drop:
         _ = data.pop('undergrad', None)
         _ = data.pop('retired', None)
@@ -178,7 +179,7 @@ def plot_bars(data, drop=False, sort=False, log=False, title=True, lpos=None):
     y_min, y_max = y[0]-0.75, y[-1]+0.75
 
     fig, ax = plt.subplots(figsize=(8, 8))
-    bars = ax.barh(y, values, color='orange', align='center', edgecolor='none')
+    _ = ax.barh(y, values, color='orange', align='center', edgecolor='none')
     ax.set_yticks(y)
     if log:
         ax.set_xscale('log')
