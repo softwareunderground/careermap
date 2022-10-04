@@ -20,5 +20,4 @@ Or just do this from this directory:
 
 ## Demo
 
-There's a deployed version of this app running at
-[**careermap.softwareunderground.org**](https://careermap.softwareunderground.org/).
+This app is no longer deployed anywhere.
